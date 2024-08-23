@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 class QuestionScreen extends StatelessWidget {
   const QuestionScreen({super.key});
 
+  Widget buildAnswerButton(String answerText) {
+    return TextButton(
+      onPressed: () {},
+      child: Text(answerText),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,20 +21,11 @@ class QuestionScreen extends StatelessWidget {
           children: [
             const Text('This is a question message!'),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Answer 1'),
-            ),
+            buildAnswerButton('Answer 1'),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Answer 2'),
-            ),
+            buildAnswerButton('Answer 2'),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Answer 3'),
-            ),
+            buildAnswerButton('Answer 3'),
           ],
         ),
       ),
