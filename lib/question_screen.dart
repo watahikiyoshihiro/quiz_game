@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:quiz_game/question.dart';
 
-class QuestionScreen extends StatelessWidget {
+class QuestionScreen extends ConsumerWidget {
   const QuestionScreen({super.key});
 
   Widget buildAnswerButton(String answerText) {
@@ -11,7 +13,9 @@ class QuestionScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final questions = ref.watch(questionsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Question Screen'),
@@ -19,13 +23,16 @@ class QuestionScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const Text('This is a question message!'),
-            const SizedBox(height: 20),
-            buildAnswerButton('Answer 1'),
-            const SizedBox(height: 20),
-            buildAnswerButton('Answer 2'),
-            const SizedBox(height: 20),
-            buildAnswerButton('Answer 3'),
+            // The first question text
+            Text(questions[0].question), //Dummy question data!!!
+            // For each answer, show a TextButton with the answer text
+            // and a SizedBox of height 20 to separate the buttons
+            ...questions[0].answers.expand(
+                  (answer) => [
+                    buildAnswerButton(answer),
+                    const SizedBox(height: 20),
+                  ],
+                ), //Dummy answer data!!!
           ],
         ),
       ),
